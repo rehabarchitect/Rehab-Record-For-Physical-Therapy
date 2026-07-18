@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>9 หลักการบันทึกเวชระเบียนกายภาพบำบัด</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;600;700;800&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12233F;
+    --ink-soft:#3A4A66;
+    --paper:#F3F1EA;
+    --paper-2:#FFFFFF;
+    --teal:#0E6B63;
+    --teal-soft:#DCEDEA;
+    --amber:#C4622D;
+    --amber-soft:#F5E2D3;
+    --line:#D8D2C2;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans Thai',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .page{
+    max-width:720px;
+    margin:0 auto;
+    padding:0 0 48px;
+  }
+
+  /* HERO */
+  .hero{
+    background:var(--ink);
+    color:var(--paper);
+    padding:44px 28px 36px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    right:-60px; top:-60px;
+    width:220px; height:220px;
+    border:1px solid rgba(243,241,234,0.14);
+    border-radius:50%;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    right:20px; top:40px;
+    width:120px; height:120px;
+    border:1px solid rgba(243,241,234,0.14);
+    border-radius:50%;
+  }
+  .eyebrow{
+    font-family:'Kanit',sans-serif;
+    font-weight:600;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    font-size:12.5px;
+    color:#9FCFC6;
+    margin:0 0 14px;
+  }
+  .hero h1{
+    font-family:'Kanit',sans-serif;
+    font-weight:800;
+    font-size:34px;
+    line-height:1.22;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .hero h1 span{color:#E7A579;}
+  .hero p{
+    font-size:15px;
+    line-height:1.7;
+    color:#C9CDD9;
+    margin:0;
+    max-width:46ch;
+  }
+  .hero .src{
+    margin-top:20px;
+    display:inline-block;
+    font-size:12px;
+    color:#8FA0BE;
+    border-top:1px solid rgba(243,241,234,0.18);
+    padding-top:12px;
+  }
+
+  /* GENERAL PRINCIPLE STRIP */
+  .strip{
+    display:flex;
+    background:var(--teal);
+    color:#fff;
+  }
+  .strip div{
+    flex:1;
+    padding:14px 16px;
+    font-size:13px;
+    font-weight:600;
+    line-height:1.5;
+    text-align:center;
+    font-family:'Kanit',sans-serif;
+  }
+  .strip div:not(:last-child){border-right:1px solid rgba(255,255,255,0.25);}
+
+  /* LIST */
+  .list{
+    padding:34px 20px 8px;
+    position:relative;
+  }
+  .list::before{
+    content:"";
+    position:absolute;
+    left:52px; top:34px; bottom:40px;
+    width:2px;
+    background:repeating-linear-gradient(to bottom, var(--line) 0 6px, transparent 6px 12px);
+  }
+  .item{
+    display:flex;
+    gap:16px;
+    padding:0 0 26px;
+    position:relative;
+  }
+  .num{
+    flex:0 0 64px;
+    height:64px;
+    border-radius:50%;
+    background:var(--paper-2);
+    border:2px solid var(--ink);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Kanit',sans-serif;
+    font-weight:700;
+    font-size:24px;
+    color:var(--ink);
+    z-index:1;
+    flex-shrink:0;
+  }
+  .item.accent .num{
+    background:var(--amber);
+    border-color:var(--amber);
+    color:#fff;
+  }
+  .card{
+    background:var(--paper-2);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:16px 18px;
+    flex:1;
+    box-shadow:0 1px 0 rgba(18,35,63,0.03);
+  }
+  .card h3{
+    font-family:'Kanit',sans-serif;
+    font-weight:700;
+    font-size:16.5px;
+    margin:0 0 6px;
+    color:var(--ink);
+  }
+  .card p{
+    margin:0;
+    font-size:14px;
+    line-height:1.65;
+    color:var(--ink-soft);
+  }
+  .tag{
+    display:inline-block;
+    font-family:'Kanit',sans-serif;
+    font-size:10.5px;
+    font-weight:600;
+    letter-spacing:.06em;
+    color:var(--teal);
+    background:var(--teal-soft);
+    border-radius:999px;
+    padding:3px 9px;
+    margin-bottom:8px;
+  }
+  .item.accent .tag{color:var(--amber); background:var(--amber-soft);}
+
+  /* FOOTER RULES BOX */
+  .rules{
+    margin:8px 20px 0;
+    background:var(--ink);
+    color:var(--paper);
+    border-radius:16px;
+    padding:22px 22px 24px;
+  }
+  .rules h4{
+    font-family:'Kanit',sans-serif;
+    font-size:15px;
+    font-weight:700;
+    margin:0 0 12px;
+    color:#E7A579;
+    letter-spacing:.02em;
+  }
+  .rules ul{
+    margin:0; padding:0; list-style:none;
+    display:grid; gap:10px;
+  }
+  .rules li{
+    font-size:13.5px;
+    line-height:1.6;
+    padding-left:22px;
+    position:relative;
+    color:#D6DAE5;
+  }
+  .rules li::before{
+    content:"✕";
+    position:absolute; left:0; top:1px;
+    color:#E7A579;
+    font-weight:700;
+    font-size:12px;
+  }
+  .rules li.ok::before{content:"✓"; color:#9FCFC6;}
+
+  .footnote{
+    text-align:center;
+    font-size:11.5px;
+    color:var(--ink-soft);
+    opacity:.7;
+    margin:22px 20px 0;
+    line-height:1.6;
+  }
+
+  @media (max-width:420px){
+    .hero h1{font-size:28px;}
+    .strip{flex-direction:column;}
+    .strip div:not(:last-child){border-right:none; border-bottom:1px solid rgba(255,255,255,0.25);}
+    .num{flex:0 0 52px; height:52px; font-size:20px;}
+    .list::before{left:46px;}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="hero">
+    <p class="eyebrow">Medical Record Audit Guideline · Rehabilitation Record</p>
+    <h1>9 หลักการบันทึก<br><span>เวชระเบียนกายภาพบำบัด</span></h1>
+    <p>เกณฑ์การบันทึกที่ใช้ตรวจประเมินคุณภาพเวชระเบียนผู้ป่วยใน หมวด Rehabilitation Record — สรุปให้อ่านง่าย พร้อมใช้หน้างานจริง</p>
+    <span class="src">อ้างอิง: คู่มือแนวทางการบันทึกและตรวจประเมินคุณภาพการบันทึกเวชระเบียน — สปสช. / สภาการพยาบาล / สรพ.</span>
+  </div>
+
+  <div class="strip">
+    <div>ซัก&ตรวจร่างกาย</div>
+    <div>วางแผนรักษา</div>
+    <div>ให้บริการ</div>
+    <div>สรุป&ส่งต่อ</div>
+  </div>
+
+  <div class="list">
+
+    <div class="item">
+      <div class="num">1</div>
+      <div class="card">
+        <span class="tag">HISTORY</span>
+        <h3>ซักประวัติ</h3>
+        <p>บันทึกอาการสำคัญ ประวัติปัจจุบัน และประวัติอดีตที่เกี่ยวข้องกับปัญหาที่ต้องการฟื้นฟูสมรรถภาพ</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="num">2</div>
+      <div class="card">
+        <span class="tag">EXAMINATION</span>
+        <h3>ตรวจร่างกาย</h3>
+        <p>บันทึกผลตรวจร่างกายเฉพาะส่วนที่เกี่ยวข้อง สอดคล้องกับปัญหาที่ต้องการฟื้นฟู</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="num">3</div>
+      <div class="card">
+        <span class="tag">DIAGNOSIS</span>
+        <h3>วินิจฉัย & สรุปปัญหา</h3>
+        <p>ระบุการวินิจฉัยโรค หรือการวินิจฉัยทางกายภาพบำบัด พร้อมสรุปปัญหาที่ต้องการฟื้นฟูสมรรถภาพ</p>
+      </div>
+    </div>
+
+    <div class="item accent">
+      <div class="num">4</div>
+      <div class="card">
+        <span class="tag">PLAN</span>
+        <h3>เป้าหมาย & แผนการรักษา</h3>
+        <p>ระบุเป้าหมายการฟื้นฟู แผนการรักษา ชนิดของการบำบัด/หัตถการ รวมถึงข้อห้ามและข้อควรระวัง</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="num">5</div>
+      <div class="card">
+        <span class="tag">TREATMENT LOG</span>
+        <h3>บันทึกการรักษาแต่ละครั้ง</h3>
+        <p>ระบุอวัยวะหรือตำแหน่งที่ทำการบำบัด และระยะเวลาที่ใช้ในการรักษาแต่ละครั้ง</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="num">6</div>
+      <div class="card">
+        <span class="tag">PROGRESS</span>
+        <h3>ประเมินผลความก้าวหน้า</h3>
+        <p>บันทึกผลการประเมินการให้บริการ และความก้าวหน้าของการฟื้นฟูสมรรถภาพเทียบกับเป้าหมายที่ตั้งไว้</p>
+      </div>
+    </div>
+
+    <div class="item accent">
+      <div class="num">7</div>
+      <div class="card">
+        <span class="tag">SUMMARY</span>
+        <h3>สรุปผล & แผนจำหน่าย</h3>
+        <p>บันทึกสรุปผลการให้บริการฟื้นฟูสมรรถภาพ พร้อมแผนการจำหน่ายผู้ป่วย</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="num">8</div>
+      <div class="card">
+        <span class="tag">EDUCATION</span>
+        <h3>Home Program & คำแนะนำ</h3>
+        <p>บันทึกรายละเอียดการให้ home program หรือคำแนะนำการปฏิบัติตัว (ผู้ป่วยและครอบครัว) หรือแผนการดูแลต่อเนื่อง</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="num">9</div>
+      <div class="card">
+        <span class="tag">SIGNATURE</span>
+        <h3>ลายมือชื่อผู้บำบัด</h3>
+        <p>เขียนด้วยลายมือที่อ่านออกได้ ลงชื่อแพทย์เวชศาสตร์ฟื้นฟูหรือนักกายภาพบำบัด ระบุตัวตนได้ชัดเจน <b>ทุกครั้ง</b>ที่มีการบำบัด</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="rules">
+    <h4>⚑ กติกาทั่วไปที่คุมทุกข้อ</h4>
+    <ul>
+      <li>ห้ามบันทึกด้วยดินสอ — ใช้ปากกาเท่านั้น</li>
+      <li>แก้ไขข้อความต้องขีดฆ่าและลงลายมือชื่อกำกับทุกครั้ง</li>
+      <li>แก้ไขโดยไม่ลงนามกำกับ = ข้อความนั้นไม่ถูกนำมาใช้ประเมิน</li>
+      <li class="ok">ระบุตัวผู้บันทึกได้ชัดเจนทุกครั้งที่มีการบำบัด</li>
+      <li class="ok">บันทึกทันเวลา สอดคล้องกับปัญหาที่ต้องการฟื้นฟูจริง</li>
+    </ul>
+  </div>
+
+  <p class="footnote">สรุปจากคู่มือแนวทางการบันทึกและตรวจประเมินคุณภาพการบันทึกเวชระเบียน (Medical Record Audit Guideline) หมวด 11. Rehabilitation Record — ใช้เพื่อการเรียนรู้/อ้างอิงหน้างาน ไม่ทดแทนต้นฉบับทางการ</p>
+
+</div>
+</body>
+</html>
